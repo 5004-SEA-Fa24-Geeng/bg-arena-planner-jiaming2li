@@ -76,9 +76,15 @@ public class GameList implements IGameList {
         }
 
         if (found) {
-            for(int i = 0; i<gameList.size();i++){
-                if(gameList.get(i).getName().toLowerCase().trim().equals(str.toLowerCase().trim())){
-                    gameNames.add(gameList.get(i).getName());
+            if (! str.trim().toLowerCase().equals("all") ) {
+                for (int i = 0; i < gameList.size(); i++) {
+                    if (gameList.get(i).getName().toLowerCase().trim().equals(str.toLowerCase().trim())) {
+                        gameNames.add(gameList.get(i).getName());
+                    }
+                }
+            }else{
+                for (BoardGame game: gameList){
+                    gameNames.add(game.getName());
                 }
             }
 
