@@ -44,7 +44,7 @@ public class Planner implements IPlanner {//classPlanner
         String[] conditions = filter.split(",");
 
         return games.stream()
-                .filter(game-> {
+                .filter(game-> { //ignore?
                     boolean matches = true;
 
                     for (String condition : conditions) { //miniplayers>4, name = quintus
@@ -74,7 +74,7 @@ public class Planner implements IPlanner {//classPlanner
                                 break;
                             case NAME:
                                 if (op.equals(Operations.CONTAINS)){
-                                    matches &= game.getName().toLowerCase().contains(strValue.toLowerCase());
+                                    matches &= game.getName().toLowerCase().trim().contains(strValue.toLowerCase().trim());
                                     break;
                                 }
                         }

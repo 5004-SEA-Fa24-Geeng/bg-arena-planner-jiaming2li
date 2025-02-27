@@ -109,6 +109,7 @@ public class GameList implements IGameList {
             }
 
         }
+        gameNames = new ArrayList<>(new LinkedHashSet<>(gameNames));
 
     }
 
@@ -118,23 +119,6 @@ public class GameList implements IGameList {
         //throw new UnsupportedOperationException("Unimplemented method 'removeFromList'");
 
         //3-7
-
-        List<String> temp = new ArrayList<>();
-
-        //if (index.length == 1){
-        //    int j = Integer.parseInt(index[0])-1;
-        //    gameNames.remove(j);
-        //} else {
-        //    int j = Integer.parseInt(index[0])-1;
-        //    int k = Integer.parseInt(index[1])-1;
-        //    for(int i = 0; i <gameNames.size(); i++){
-        //        if(i<=k && i>=j){ //1-3 0-2
-        //            temp.add(gameNames.get(i));
-        //        }
-        //    }
-        //    gameNames.removeAll(temp);
-        //}
-
         boolean found = false;
 
         String[] parts = str.split("-");
