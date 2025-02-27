@@ -1,6 +1,5 @@
 package student;
 
-
 /**
  * Main entry point for the program.
  */
@@ -24,7 +23,4 @@ public final class BGArenaPlanner {
         ConsoleApp app = new ConsoleApp(list, planner);
         app.start();
     }
-
-
-
 }

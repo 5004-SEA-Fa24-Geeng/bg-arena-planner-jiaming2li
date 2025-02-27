@@ -1,11 +1,8 @@
 package student;
 
-import java.util.Collections;
-import java.util.List;
-import java.util.Properties;
-import java.util.Scanner;
+import java.util.*;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
-import java.util.Random;
 
 
 /**
@@ -29,6 +26,9 @@ public class ConsoleApp {
     private final IGameList gameList;
     /** The planner to help filter games. */
     private final IPlanner planner;
+
+    private List<BoardGame> filtered = new ArrayList<>();
+
 
     /**
      * Constructor for the console app.
@@ -56,7 +56,7 @@ public class ConsoleApp {
                     processHelp();
                     break;
                 case CMD_FILTER:
-                    processFilter();
+                    processFilter(); //
                     break;
                 case CMD_LIST:
                     processListCommands();
@@ -70,7 +70,7 @@ public class ConsoleApp {
             }
 
             // clean up scanner.
-            current.close();
+            current.close(); //scanner
             current = null;
             // get the next prompt
             ct = nextCommand();
@@ -136,6 +136,7 @@ public class ConsoleApp {
                 // break it up, figure out sort
                 boolean ascending = true; // default
                 String[] parts = filter.split(ConsoleText.CMD_SORT_OPTION.toString());
+
                 if (parts.length == 2) {
                     String sort = parts[1];
                     if (sort.contains(ConsoleText.CMD_SORT_OPTION_DIRECTION_ASC.toString())) {
@@ -164,7 +165,10 @@ public class ConsoleApp {
             printOutput("%s%n", ConsoleText.NO_FILTER);
             result = planner.filter("");
         }
-        printFilterStream(result, sortON);
+        //printFilterStream(result, sortON);
+        List<BoardGame> tempList = result.collect(Collectors.toList());
+        printFilterStream(tempList.stream(), sortON);
+        filtered = tempList;
     }
 
     /**
@@ -189,7 +193,6 @@ public class ConsoleApp {
         ConsoleText ct = ConsoleText.INVALID;
         if (current.hasNext()) {
             ct = nextCommand();
-
             switch (ct) {
                 case CMD_SHOW:
                     printCurrentList();
@@ -203,7 +206,9 @@ public class ConsoleApp {
                         break;
                     }
                     try {
-                        gameList.addToList(toAdd, planner.filter(""));
+                        //gameList.addToList(toAdd, planner.filter(""));
+                        //System.out.println(filtered);
+                        gameList.addToList(toAdd, filtered.stream());
                     } catch (IllegalArgumentException e) {
                         printOutput("%s %s%n", ConsoleText.INVALID_LIST, toAdd);
                     }

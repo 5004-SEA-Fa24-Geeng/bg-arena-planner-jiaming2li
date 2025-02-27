@@ -5,23 +5,22 @@ code as it is meant to help you understand some of the concepts.
 
 ## Technical Questions
 
-1. What is the difference between == and .equals in java? Provide a code example of each, where they would return different results for an object. Include the code snippet using the hash marks (```) to create a code block.
+**1. What is the difference between == and .equals in java? Provide a code example of each, where they would return different results for an object. Include the code snippet using the hash marks (```) to create a code block.**  
+   `==` compares references (memory addresses) of two objects while`.equals()`compares values inside two objects.
    ```java
-   // your code here
-   
+    String str1 = new String("Hello");
+    String str2 = new String("Hello");
+    str1!=str2;
+    str1.equals(str2);
    ```
-
-
-
-
-2. Logical sorting can be difficult when talking about case. For example, should "apple" come before "Banana" or after? How would you sort a list of strings in a case-insensitive manner? 
-
-
-
-
-
-3. In our version of the solution, we had the following code (snippet)
-    ```java
+**2. Logical sorting can be difficult when talking about case. For example, should "apple" come before "Banana" or after? How would you sort a list of strings in a case-insensitive manner?**  
+`Comparator` interface and `String.CASE_INSENSITIVE_ORDER` can be used. For example,
+```java
+List<String> fruits = Arrays.asList("apple", "Banana", "Orange", "grape");
+fruits.sort(String.CASE_INSENSITIVE_ORDER); 
+```
+**3. In our version of the solution, we had the following code (snippet)**  
+ ```java
     public static Operations getOperatorFromStr(String str) {
         if (str.contains(">=")) {
             return Operations.GREATER_THAN_EQUALS;
@@ -32,30 +31,25 @@ code as it is meant to help you understand some of the concepts.
         } else if (str.contains("<")) {
             return Operations.LESS_THAN;
         } else if (str.contains("=="))...
-    ```
-    Why would the order in which we checked matter (if it does matter)? Provide examples either way proving your point. 
+ ```
+ **Why would the order in which we checked matter (if it does matter)? Provide examples either way proving your point.**   
+For example, as `>=` also contains `>`, if`>` goes first,`>=` would be recognized as `>`. But putting `>=` ahead would avoid this.
+
+
+**4. What is the difference between a List and a Set in Java? When would you use one over the other?**  
+List is ordered, indexed and allows duplicates. So when order, index and duplicate elements are necessary or important, list should be used.  
+Set is unordered without duplicates and index. So when duplicate is not allowed and order and index does not matter, set can be used.
+
+**5. In [GamesLoader.java](src/main/java/student/GamesLoader.java), we use a Map to help figure out the columns. What is a map? Why would we use a Map here?**   
+A `Map` in Java is a collection that stores key-value pairs, where each key is unique, and it maps to a specific value. Using a `Map` can be helpful in scenarios where we need to associate a column identifier (the key) with a specific column of data (the value).
 
 
 
-4. What is the difference between a List and a Set in Java? When would you use one over the other? 
+**6. [GameData.java](src/main/java/student/GameData.java) is actually an `enum` with special properties we added to help with column name mappings. What is an `enum` in Java? Why would we use it for this application?**  
+Enum is a data type consisting a predefined set of named values.  
+In this application, using enum can eliminate the risk of typos or inconsistencies when referring to column names throughout the application. Some enum constants are associated with additional properties and methods, keeping related logic and data together and makes the code more maintainable
 
-
-
-
-5. In [GamesLoader.java](src/main/java/student/GamesLoader.java), we use a Map to help figure out the columns. What is a map? Why would we use a Map here? 
-
-
-
-
-6. [GameData.java](src/main/java/student/GameData.java) is actually an `enum` with special properties we added to help with column name mappings. What is an `enum` in Java? Why would we use it for this application?
-
-
-
-
-
-
-
-7. Rewrite the following as an if else statement inside the empty code block.
+**7. Rewrite the following as an if else statement inside the empty code block.**   
     ```java
     switch (ct) {
                 case CMD_QUESTION: // same as help
@@ -66,12 +60,16 @@ code as it is meant to help you understand some of the concepts.
                 default:
                     CONSOLE.printf("%s%n", ConsoleText.INVALID);
             }
-    ``` 
+      ```
 
-    ```java
-    // your code here, don't forget the class name that is dropped in the switch block..
-    
-    ```
+    if (ct == CMD_QUESTION || ct == CMD_HELP) {
+        processHelp();
+      } else if (ct == INVALID) {
+           CONSOLE.printf("%s%n", ConsoleText.INVALID);
+      } else {
+           CONSOLE.printf("%s%n", ConsoleText.INVALID);
+      }
+
 
 ## Deeper Thinking
 
