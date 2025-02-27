@@ -124,7 +124,6 @@ public class GameList implements IGameList {
         String[] parts = str.split("-");
 
         for (String part : parts) { //7 wonders
-
             // 如果包含非数字字符 (排除 `-`)，则识别为字符串
             if (part.matches(".*[^0-9-].*")) {
                 found = true;
@@ -132,9 +131,16 @@ public class GameList implements IGameList {
         }
 
         if (found) {
-            for(int i = 0; i<gameNames.size();i++){
-                if(gameNames.get(i).toLowerCase().trim().equals(str.toLowerCase().trim())){
-                    gameNames.remove(i);
+            if (! str.trim().toLowerCase().equals("all") ) {
+                for(int i = 0; i<gameNames.size();i++){
+                    if(gameNames.get(i).toLowerCase().trim().equals(str.toLowerCase().trim())){
+                        gameNames.remove(i);
+                    }
+                }
+            }else{
+                for(int i =0; i<gameNames.size();i++){
+                    gameNames.clear();
+
                 }
             }
         }else{
@@ -148,11 +154,13 @@ public class GameList implements IGameList {
             }else{
                 int start = Integer.parseInt(parts[0]);
                 int end = Integer.parseInt(parts[1]);
+                List<String> temp = new ArrayList<>();
                 for(int i = 0; i<gameNames.size();i++){
                     if(start <= i + 1 && i + 1 <= end) {
-                        gameNames.remove(i);
+                        temp.add(gameNames.get(i));
                     }
                 }
+                gameNames.removeAll(temp);
             }
         }
 
