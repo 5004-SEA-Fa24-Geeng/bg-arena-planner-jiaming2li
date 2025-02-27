@@ -96,6 +96,9 @@ public class Planner implements IPlanner {//classPlanner
                                 if (op.equals(Operations.EQUALS)){
                                     matches &= game.getName().toLowerCase().trim().equals(strValue.toLowerCase().trim());
                                     break;
+                                }else{
+                                    //matches &= (game.getName().toLowerCase().trim().compareTo(strValue.toLowerCase().trim())>=0);
+                                    matches &= applyFilter(game.getName().toLowerCase().trim().compareTo(strValue.toLowerCase().trim()), op, 0);
                                 }
                         }
                     }
