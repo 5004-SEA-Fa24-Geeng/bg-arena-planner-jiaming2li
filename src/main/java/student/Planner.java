@@ -38,7 +38,7 @@ public class Planner implements IPlanner {//classPlanner
         // TODO Auto-generated method stub
         //throw new UnsupportedOperationException("Unimplemented method 'filter'");
         if (filter.isEmpty()) {
-            return games.stream();  // Return all games if filter is empty
+            return games.stream().sorted(getComparator(sortOn, ascending));  // Return all games if filter is empty
         }
 
         String[] conditions = filter.split(",");
