@@ -88,6 +88,7 @@ public class Planner implements IPlanner {//classPlanner
                                 break;
                             case MIN_TIME:
                                 matches &= applyFilter(game.getMinPlayTime(), op, numValue);
+                                break;
                             case NAME:
                                 if (op.equals(Operations.CONTAINS)){
                                     matches &= game.getName().toLowerCase().trim().contains(strValue.toLowerCase().trim());
@@ -99,6 +100,7 @@ public class Planner implements IPlanner {//classPlanner
                                 }else{
                                     //matches &= (game.getName().toLowerCase().trim().compareTo(strValue.toLowerCase().trim())>=0);
                                     matches &= applyFilter(game.getName().toLowerCase().trim().compareTo(strValue.toLowerCase().trim()), op, 0);
+                                    break;
                                 }
                         }
                     }
