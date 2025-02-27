@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.List;
+import java.util.regex.*;
 
 public class GameList implements IGameList {
     private List<String> gameNames = new ArrayList<>();
@@ -61,19 +62,43 @@ public class GameList implements IGameList {
         }
 
         List<BoardGame> gameList = filtered.toList();
-        String[] index = str.split("-");
 
-        for (int i = 0; i<gameList.size(); i++) {
-            if (index.length == 1) {
-                int j = Integer.parseInt(index[0]);
-                if (j == i+1) {
+        boolean found = false;
+
+        String[] parts = str.split("-");
+
+        for (String part : parts) { //7 wonders
+
+            // 如果包含非数字字符 (排除 `-`)，则识别为字符串
+            if (part.matches(".*[^0-9-].*")) {
+                found = true;
+            }
+        }
+
+        if (found) {
+            for(int i = 0; i<gameList.size();i++){
+                if(gameList.get(i).getName().toLowerCase().trim().equals(str.toLowerCase().trim())){
                     gameNames.add(gameList.get(i).getName());
                 }
-            } else{
-                int j = Integer.parseInt(index[0]);
-                int k = Integer.parseInt(index[1]);
-                if (j <= i + 1 && i + 1 <= k) {
-                    gameNames.add(gameList.get(i).getName());
+            }
+
+        } else {
+            if(parts.length == 1){
+                int index = Integer.parseInt(parts[0]);
+                for(int i = 0; i<gameList.size();i++){
+                    if(i==index-1){
+                        gameNames.add(gameList.get(i).getName());
+                    }
+                }
+
+            }
+            else{
+                int start = Integer.parseInt(parts[0]);
+                int end = Integer.parseInt(parts[1]);
+                for(int i = 0; i<gameList.size();i++){
+                    if (start <= i + 1 && i + 1 <= end) {
+                       gameNames.add(gameList.get(i).getName());
+                   }
                 }
             }
 
@@ -87,22 +112,60 @@ public class GameList implements IGameList {
         //throw new UnsupportedOperationException("Unimplemented method 'removeFromList'");
 
         //3-7
-        String[] index = str.split("-");
+
         List<String> temp = new ArrayList<>();
 
-        if (index.length == 1){
-            int j = Integer.parseInt(index[0])-1;
-            gameNames.remove(j);
-        } else {
-            int j = Integer.parseInt(index[0])-1;
-            int k = Integer.parseInt(index[1])-1;
-            for(int i = 0; i <gameNames.size(); i++){
-                if(i<=k && i>=j){ //1-3 0-2
-                    temp.add(gameNames.get(i));
+        //if (index.length == 1){
+        //    int j = Integer.parseInt(index[0])-1;
+        //    gameNames.remove(j);
+        //} else {
+        //    int j = Integer.parseInt(index[0])-1;
+        //    int k = Integer.parseInt(index[1])-1;
+        //    for(int i = 0; i <gameNames.size(); i++){
+        //        if(i<=k && i>=j){ //1-3 0-2
+        //            temp.add(gameNames.get(i));
+        //        }
+        //    }
+        //    gameNames.removeAll(temp);
+        //}
+
+        boolean found = false;
+
+        String[] parts = str.split("-");
+
+        for (String part : parts) { //7 wonders
+
+            // 如果包含非数字字符 (排除 `-`)，则识别为字符串
+            if (part.matches(".*[^0-9-].*")) {
+                found = true;
+            }
+        }
+
+        if (found) {
+            for(int i = 0; i<gameNames.size();i++){
+                if(gameNames.get(i).toLowerCase().trim().equals(str.toLowerCase().trim())){
+                    gameNames.remove(i);
                 }
             }
-            gameNames.removeAll(temp);
+        }else{
+            if(parts.length == 1){
+                int index = Integer.parseInt(parts[0]);
+                for(int i = 0; i<gameNames.size();i++){
+                    if(i==index-1){
+                        gameNames.remove(i);
+                    }
+                }
+            }else{
+                int start = Integer.parseInt(parts[0]);
+                int end = Integer.parseInt(parts[1]);
+                for(int i = 0; i<gameNames.size();i++){
+                    if(start <= i + 1 && i + 1 <= end) {
+                        gameNames.remove(i);
+                    }
+                }
+            }
         }
+
     }
 
 }
