@@ -73,7 +73,7 @@ public class Planner implements IPlanner {//classPlanner
                                 matches &= applyFilter(game.getMaxPlayers(), op, numValue);
                                 break;
                             case RATING:
-                                matches &= applyFilter(game.getMaxPlayers(), op, numValue);
+                                matches &= applyFilter(game.getRating(), op, numValue);
                                 break;
                             case RANK:
                                 matches &= applyFilter(game.getRank(), op, numValue);
@@ -83,6 +83,7 @@ public class Planner implements IPlanner {//classPlanner
                                 break;
                             case DIFFICULTY:
                                 matches &= applyFilter(game.getDifficulty(), op, numValue);
+                                break;
                             case MAX_TIME:
                                 matches &= applyFilter(game.getMaxPlayTime(), op, numValue);
                                 break;
