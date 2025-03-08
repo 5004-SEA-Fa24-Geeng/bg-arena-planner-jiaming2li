@@ -50,7 +50,7 @@ public class Planner implements IPlanner {//classPlanner
                 String[] parts = condition.split("[=><!~]+");
                 GameData gd = GameData.fromString(parts[0].trim());
 
-                String right = parts[1].trim();
+                String right = parts[1].trim().toLowerCase();
 
                 stream = stream.filter(game -> f.filter(game, gd, op, right));//ignore?
             }

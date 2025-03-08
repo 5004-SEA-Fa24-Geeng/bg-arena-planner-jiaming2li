@@ -7,7 +7,7 @@ public class Filters {
 
         switch (column) {
             case NAME:
-                return filterString(game.getName(),op,value);
+                return filterString(game.getName().toLowerCase(),op,value);
             case MIN_PLAYERS:
                 return filterNum(game.getMinPlayers(),op,value);
             case MAX_PLAYERS:
