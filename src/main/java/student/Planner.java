@@ -5,7 +5,6 @@ import java.util.Set;
 import java.util.stream.Stream;
 
 public class Planner implements IPlanner {//classPlanner
-    //private Set<BoardGame> games;
     private Set<BoardGame> games;
     private Set<BoardGame> copy;
 
@@ -13,27 +12,23 @@ public class Planner implements IPlanner {//classPlanner
         // TODO Auto-generated method stub
         this.games = games;
         this.copy = new HashSet<>(games);
-        //throw new UnsupportedOperationException("Unimplemented constructor 'Planner'");
     }
 
     @Override
     public Stream<BoardGame> filter(String filter) {
         // TODO Auto-generated method stub
-        //throw new UnsupportedOperationException("Unimplemented method 'filter'");
         return filter(filter,GameData.NAME,true);
     }
 
     @Override
     public Stream<BoardGame> filter(String filter, GameData sortOn) {
         // TODO Auto-generated method stub
-        //throw new UnsupportedOperationException("Unimplemented method 'filter'");
         return filter(filter,sortOn,true);
     }
 
     @Override
     public Stream<BoardGame> filter(String filter, GameData sortOn, boolean ascending) {
         // TODO Auto-generated method stub
-        //throw new UnsupportedOperationException("Unimplemented method 'filter'");
         Filters f = new Filters();
         Comparators c = new Comparators();
 
@@ -54,10 +49,8 @@ public class Planner implements IPlanner {//classPlanner
 
                 stream = stream.filter(game -> f.filter(game, gd, op, right));//ignore?
             }
-              // Return all games if filter is empty
         }
 
-        //Stream<BoardGame> stream = games.stream();
 
         return stream.sorted(c.comparator(sortOn, ascending));
     }
@@ -66,7 +59,6 @@ public class Planner implements IPlanner {//classPlanner
     @Override
     public void reset() {
         // TODO Auto-generated method stub
-        //throw new UnsupportedOperationException("Unimplemented method 'reset'");
         this.games = new HashSet<>(copy);
     }
 

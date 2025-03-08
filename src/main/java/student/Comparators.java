@@ -3,7 +3,6 @@ package student;
 import java.util.Comparator;
 
 public class Comparators {
-    public Comparators(){}
 
     public static Comparator<BoardGame> comparator(GameData sortOn, boolean ascending) {
 

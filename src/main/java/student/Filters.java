@@ -1,29 +1,28 @@
 package student;
 
 public class Filters {
-    public Filters(){}//or private?
 
     public static boolean filter(BoardGame game, GameData column, Operations op, String value) {
 
         switch (column) {
             case NAME:
-                return filterString(game.getName().toLowerCase(),op,value);
+                return filterString(game.getName().toLowerCase(), op, value);
             case MIN_PLAYERS:
-                return filterNum(game.getMinPlayers(),op,value);
+                return filterNum(game.getMinPlayers(), op, value);
             case MAX_PLAYERS:
-                return filterNum(game.getMaxPlayers(),op,value);
+                return filterNum(game.getMaxPlayers(), op, value);
             case RATING:
-                return filterNum(game.getRating(),op,value);
+                return filterNum(game.getRating(), op, value);
             case RANK:
-                return filterNum(game.getRank(),op,value);
+                return filterNum(game.getRank(), op, value);
             case YEAR:
-                return filterNum(game.getYearPublished(),op,value);
+                return filterNum(game.getYearPublished(), op, value);
             case DIFFICULTY:
-                return filterNum(game.getDifficulty(),op,value);
+                return filterNum(game.getDifficulty(), op, value);
             case MAX_TIME:
-                return filterNum(game.getMaxPlayTime(),op,value);
+                return filterNum(game.getMaxPlayTime(), op, value);
             case MIN_TIME:
-                return filterNum(game.getMinPlayTime(),op,value);
+                return filterNum(game.getMinPlayTime(), op, value);
             default:
                 return false;
         }
@@ -33,7 +32,7 @@ public class Filters {
 
         switch (op) {
             case GREATER_THAN:
-                return gameData.compareTo(value)>0;
+                return gameData.compareTo(value) > 0;
             case LESS_THAN:
                 return gameData.compareTo(value) < 0;
             case GREATER_THAN_EQUALS:
