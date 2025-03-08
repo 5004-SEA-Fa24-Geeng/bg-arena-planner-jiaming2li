@@ -8,6 +8,7 @@ import java.nio.file.Paths;
 import java.util.List;
 
 public class GameList implements IGameList {
+    /** A list to store the names of the board games. */
     private List<String> gameNames = new ArrayList<>();
 
     /**
