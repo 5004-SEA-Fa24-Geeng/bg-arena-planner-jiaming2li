@@ -29,8 +29,6 @@ public class Planner implements IPlanner {//classPlanner
     @Override
     public Stream<BoardGame> filter(String filter, GameData sortOn, boolean ascending) {
         // TODO Auto-generated method stub
-        Filters f = new Filters();
-        Comparators c = new Comparators();
 
         Stream<BoardGame> stream = games.stream();
 
@@ -47,12 +45,12 @@ public class Planner implements IPlanner {//classPlanner
 
                 String right = parts[1].trim().toLowerCase();
 
-                stream = stream.filter(game -> f.filter(game, gd, op, right));//ignore?
+                stream = stream.filter(game -> Filters.filter(game, gd, op, right));//ignore?
             }
         }
 
 
-        return stream.sorted(c.comparator(sortOn, ascending));
+        return stream.sorted(Comparators.comparator(sortOn, ascending));
     }
 
 

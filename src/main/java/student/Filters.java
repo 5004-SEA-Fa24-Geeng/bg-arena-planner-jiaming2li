@@ -2,6 +2,11 @@ package student;
 
 public class Filters {
 
+    /**
+     * Utility class for filtering BoardGame objects based on various game attributes.
+     */
+    private Filters() {}
+
     public static boolean filter(BoardGame game, GameData column, Operations op, String value) {
 
         switch (column) {
@@ -28,6 +33,16 @@ public class Filters {
         }
     }
 
+    /**
+     * Filters a string value based on the specified operation.
+     * This method compares the given game data string with the provided value
+     * using the specified operation.
+     *
+     * @param gameData The string value of the game data to be compared.
+     * @param op The operation used for comparison.
+     * @param value The string value to be compared against.
+     * @return ture if the comparison evaluates to true based on the operation, otherwise false.
+     */
     public static boolean filterString(String gameData, Operations op, String value) {
 
         switch (op) {
@@ -50,6 +65,15 @@ public class Filters {
         }
     }
 
+    /**
+     * Filters a numeric value based on the specified operation.
+     * This method compares the given numeric game data with the provided value.
+     *
+     * @param gameData The numeric value of the game data to be compared.
+     * @param op The operation used for comparison.
+     * @param value The numeric value in string format to be compared against.
+     * @return true if the comparison evaluates to true based on the operation, otherwise false.
+     */
     public static boolean filterNum(double gameData, Operations op, String value) {
         double doubleValue = Double.parseDouble(value);
 

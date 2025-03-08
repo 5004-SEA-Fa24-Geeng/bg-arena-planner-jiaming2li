@@ -69,7 +69,7 @@ public class GameList implements IGameList {
         }
 
         if (found) {
-            if (! str.trim().toLowerCase().equals("all") ) {
+            if (!str.trim().toLowerCase().equals("all")) {
                 for (int i = 0; i < gameList.size(); i++) {
                     if (gameList.get(i).getName().toLowerCase().trim().equals(str.toLowerCase().trim())) {
                         gameNames.add(gameList.get(i).getName());
@@ -82,10 +82,10 @@ public class GameList implements IGameList {
             }
 
         } else {
-            if(parts.length == 1){
+            if (parts.length == 1) {
                 int index = Integer.parseInt(parts[0]);
-                for(int i = 0; i<gameList.size();i++) {
-                    if (i==index-1) {
+                for (int i = 0; i < gameList.size(); i++) {
+                    if (i == index - 1) {
                         gameNames.add(gameList.get(i).getName());
                     }
                 }
@@ -93,7 +93,7 @@ public class GameList implements IGameList {
             } else {
                 int start = Integer.parseInt(parts[0]);
                 int end = Integer.parseInt(parts[1]);
-                for(int i = 0; i<gameList.size(); i++) {
+                for (int i = 0; i < gameList.size(); i++) {
                     if (start <= i + 1 && i + 1 <= end) {
                        gameNames.add(gameList.get(i).getName());
                    }
@@ -121,31 +121,31 @@ public class GameList implements IGameList {
         }
 
         if (found) {
-            if (! str.trim().toLowerCase().equals("all") ) {
-                for (int i = 0; i<gameNames.size();i++) {
-                    if(gameNames.get(i).toLowerCase().trim().equals(str.toLowerCase().trim())) {
+            if (!str.trim().toLowerCase().equals("all")) {
+                for (int i = 0; i < gameNames.size(); i++) {
+                    if (gameNames.get(i).toLowerCase().trim().equals(str.toLowerCase().trim())) {
                         gameNames.remove(i);
                     }
                 }
-            }else{
-                for (int i =0; i<gameNames.size();i++) {
+            } else {
+                for (int i = 0; i < gameNames.size(); i++) {
                     gameNames.clear();
 
                 }
             }
-        }else{
-            if(parts.length == 1) {
+        } else {
+            if (parts.length == 1) {
                 int index = Integer.parseInt(parts[0]);
-                for (int i = 0; i<gameNames.size(); i++){
-                    if (i == index-1){
+                for (int i = 0; i < gameNames.size(); i++){
+                    if (i == index - 1){
                         gameNames.remove(i);
                     }
                 }
-            }else{
+            } else {
                 int start = Integer.parseInt(parts[0]);
                 int end = Integer.parseInt(parts[1]);
                 List<String> temp = new ArrayList<>();
-                for (int i = 0; i<gameNames.size(); i++) {
+                for (int i = 0; i < gameNames.size(); i++) {
                     if (start <= i + 1 && i + 1 <= end) {
                         temp.add(gameNames.get(i));
                     }

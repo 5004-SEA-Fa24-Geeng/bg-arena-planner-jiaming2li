@@ -2,7 +2,12 @@ package student;
 
 import java.util.Comparator;
 
-public class Comparators {
+/**
+ * Utility class for providing comparators to sort BoardGame objects based on different game data fields.
+ */
+ public class Comparators {
+
+    private Comparators() {}
 
     public static Comparator<BoardGame> comparator(GameData sortOn, boolean ascending) {
 
