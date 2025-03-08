@@ -26,7 +26,7 @@ public class ConsoleApp {
     private final IGameList gameList;
     /** The planner to help filter games. */
     private final IPlanner planner;
-    /** List storing sorting results */
+    /** List storing sorting results. */
     private List<BoardGame> filtered = new ArrayList<>();
 
 

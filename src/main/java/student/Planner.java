@@ -4,10 +4,21 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Stream;
 
-public class Planner implements IPlanner {//classPlanner
+public class Planner implements IPlanner { //classPlanner
+    /** The original set of board games. */
     private Set<BoardGame> games;
+    /** A copy of the games set for internal operations. */
     private Set<BoardGame> copy;
 
+    /**
+     * Constructs a new {@code Planner} with the specified set of board games.
+     * This constructor initializes a planner instance with a given set of {@link BoardGame} objects.
+     * It also creates a copy of the original set to allow filtering and modifications without
+     * affecting the original data.
+     *
+     * @param games games The set of {@link BoardGame} objects that this planner will manage.
+     *              A copy of this set is also created to support filtering operations.
+     */
     public Planner(Set<BoardGame> games) {
         // TODO Auto-generated method stub
         this.games = games;
@@ -17,13 +28,13 @@ public class Planner implements IPlanner {//classPlanner
     @Override
     public Stream<BoardGame> filter(String filter) {
         // TODO Auto-generated method stub
-        return filter(filter,GameData.NAME,true);
+        return filter(filter, GameData.NAME, true);
     }
 
     @Override
     public Stream<BoardGame> filter(String filter, GameData sortOn) {
         // TODO Auto-generated method stub
-        return filter(filter,sortOn,true);
+        return filter(filter, sortOn, true);
     }
 
     @Override
@@ -45,7 +56,7 @@ public class Planner implements IPlanner {//classPlanner
 
                 String right = parts[1].trim().toLowerCase();
 
-                stream = stream.filter(game -> Filters.filter(game, gd, op, right));//ignore?
+                stream = stream.filter(game -> Filters.filter(game, gd, op, right)); //ignore?
             }
         }
 

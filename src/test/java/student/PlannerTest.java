@@ -1,5 +1,6 @@
 package student;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import java.util.Set;
 import java.util.List;
@@ -39,5 +40,25 @@ class PlannerTest {
 
     @Test
     void reset() {
+    }
+
+    @BeforeEach
+    void setUp() {
+    }
+
+    @Test
+    void filter() {
+    }
+
+    @Test
+    void testFilter2() {
+    }
+
+    @Test
+    void testFilter3() {
+    }
+
+    @Test
+    void testReset() {
     }
 }

@@ -136,8 +136,8 @@ public class GameList implements IGameList {
         } else {
             if (parts.length == 1) {
                 int index = Integer.parseInt(parts[0]);
-                for (int i = 0; i < gameNames.size(); i++){
-                    if (i == index - 1){
+                for (int i = 0; i < gameNames.size(); i++) {
+                    if (i == index - 1) {
                         gameNames.remove(i);
                     }
                 }

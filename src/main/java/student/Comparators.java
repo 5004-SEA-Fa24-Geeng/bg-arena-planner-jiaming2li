@@ -5,10 +5,20 @@ import java.util.Comparator;
 /**
  * Utility class for providing comparators to sort BoardGame objects based on different game data fields.
  */
- public class Comparators {
+ public final class Comparators {
 
-    private Comparators() {}
+    private Comparators() {
 
+    }
+
+    /**
+     * Returns a comparator for sorting objects based on the specified field.
+     * This method generates a comparator that sorts objects based on the given field.
+     *
+     * @param sortOn the field of {@link BoardGame} to sort by.
+     * @param ascending ascending {@code true} for ascending order, {@code false} for descending order.
+     * @return a {@link Comparator} for sorting {@code BoardGame} objects based on the given field.
+     */
     public static Comparator<BoardGame> comparator(GameData sortOn, boolean ascending) {
 
         Comparator<BoardGame> comparator;

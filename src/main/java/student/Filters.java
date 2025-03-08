@@ -1,12 +1,28 @@
 package student;
 
-public class Filters {
+public final class Filters {
 
     /**
      * Utility class for filtering BoardGame objects based on various game attributes.
      */
-    private Filters() {}
+    private Filters() {
 
+    }
+
+    /**
+     * Filters a {@link BoardGame} based on the specified column, operation, and value.
+     *
+     *  This method applies a filtering condition to a given {@code BoardGame} object by
+     *  comparing the specified {@link GameData} field using the given {@link Operations}
+     *  and a provided value.
+     *
+     * @param game The {@link BoardGame} object to be filtered.
+     * @param column The {@link GameData} field to filter by.
+     * @param op The {@link Operations} defining the comparison operation.
+     * @param value The string representation of the value to compare against.
+     *              If the column is numerical, the value will be parsed as a number.
+     * @return {@code true} if the game matches the filtering condition, {@code false} otherwise.
+     */
     public static boolean filter(BoardGame game, GameData column, Operations op, String value) {
 
         switch (column) {
