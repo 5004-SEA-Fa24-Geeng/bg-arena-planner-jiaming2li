@@ -87,20 +87,47 @@ Post a copy of the run with the updated languages below this. Use three back tic
 
 ```text
 // your consoles output here
+*******Welcome to the BoardGame Arena Planner.*******
+*******欢迎使用桌游竞技场规划助手！*******
+
+A tool to help people plan which games they 
+want to play on Board Game Arena. 
+一款帮助人们规划玩哪些桌游的工具。
+
+To get started, enter your first command below, or type ? or help for command options.
+请在下面输入您的第一个命令，或者输入 ‘?’ 或 ‘帮助’ 获取命令选项。
+
 ```
 
-Now, thinking about localization - we have the question of why does it matter? The obvious
+**Now, thinking about localization - we have the question of why does it matter? The obvious
 one is more about market share, but there may be other reasons.  I encourage
 you to take time researching localization and the importance of having programs
 flexible enough to be localized to different languages and cultures. Maybe pull up data on the
-various spoken languages around the world? What about areas with internet access - do they match? Just some ideas to get you started. Another question you are welcome to talk about - what are the dangers of trying to localize your program and doing it wrong? Can you find any examples of that? Business marketing classes love to point out an example of a car name in Mexico that meant something very different in Spanish than it did in English - however [Snopes has shown that is a false tale](https://www.snopes.com/fact-check/chevrolet-nova-name-spanish/).  As a developer, what are some things you can do to reduce 'hick ups' when expanding your program to other languages?
+various spoken languages around the world? What about areas with internet access - do they match? Just some ideas to get you started. Another question you are welcome to talk about - what are the dangers of trying to localize your program and doing it wrong? Can you find any examples of that? Business marketing classes love to point out an example of a car name in Mexico that meant something very different in Spanish than it did in English - however [Snopes has shown that is a false tale](https://www.snopes.com/fact-check/chevrolet-nova-name-spanish/).  As a developer, what are some things you can do to reduce 'hick ups' when expanding your program to other languages?**  
+
+Localization can help adapting a product to meet the linguistic, cultural, and functional expectations of users in different regions as there are huge differences between various languages and cultures.   
+At present, there are approximately 7,000 languages spoken globally[^6]. The regions with internet access globally are primarily covered by major languages such as English, Chinese, Spanish, French, and Arabic. 
+As internet penetration increases, by 2024, approximately 5.5 billion people will be using the internet, accounting for 68% of the global population[^7]. So to tap a product into broader markets, localization is necessary.  
+Dangers of trying to localize a program:  
+1, cultural misunderstandings: happens when certain word is culturally sensitive in some area， such as number four is avoided by Chinese.  
+2, incorrect translation happens when a word has different meanings, like “lick fingers chicken” may have a few translations.[^8]   
+3, legal violations, some translations may violate local regulations, like some kinds of alcohol are forbidden somewhere.  
+
+To reduce ‘hick ups’, we can use professional translators and local experts to ensure precision and avoid misunderstandings. 
+Also, companies can hire people to conduct cultural sensitivity check and trials before launching[^9]. 
+It is also important to keep tracks with the market response and customers feedbacks, enabling to adjust localization strategies as soon as possible.[^10]
 
 
 As a reminder, deeper thinking questions are meant to require some research and to be answered in a paragraph for with references. The goal is to open up some of the discussion topics in CS, so you are better informed going into industry. 
 
 ## References
 [^1]: Difference Between == Operator and equals() Method in Java. https://www.geeksforgeeks.org/difference-between-and-equals-method-in-java/ Accessed: 2025-03-08.  
-[^2]: Java Program to sort a List in case insensitive order. https://www.tutorialspoint.com/java-program-to-sort-a-list-in-case-insensitive-order Accessed: 2025-03-08.
-[^3]: Difference Between List and Set in Java. https://www.geeksforgeeks.org/difference-between-list-and-set-in-java/ Accessed: 2025-03-08.
-[^4]: Map Interface in Java. https://www.geeksforgeeks.org/map-interface-java-examples/ Accessed: 2025-03-08.
-[^5]: Enum Types. https://docs.oracle.com/javase/tutorial/java/javaOO/enum.html Accessed: 2025-03-08.
+[^2]: Java Program to sort a List in case insensitive order. https://www.tutorialspoint.com/java-program-to-sort-a-list-in-case-insensitive-order Accessed: 2025-03-08.  
+[^3]: Difference Between List and Set in Java. https://www.geeksforgeeks.org/difference-between-list-and-set-in-java/ Accessed: 2025-03-08.  
+[^4]: Map Interface in Java. https://www.geeksforgeeks.org/map-interface-java-examples/ Accessed: 2025-03-08.  
+[^5]: Enum Types. https://docs.oracle.com/javase/tutorial/java/javaOO/enum.html Accessed: 2025-03-08.    
+[^6]: Languages of the World.https://www.ethnologue.com/?utm_source=chatgpt.com Accessed: 2025-03-08.  
+[^7]: Statistics.https://www.itu.int/en/ITU-D/Statistics/pages/stat/default.aspx?utm_source=chatgpt.com Accessed: 2025-03-08.  
+[^8]: The Hilarious Translation Mistake KFC China Made With Its Slogan. https://www.mashed.com/747566/the-hilarious-translation-mistake-kfc-china-made-with-its-slogan/ Accessed: 2025-03-08.  
+[^9]: Multimedia language services. https://toppandigital.com/service/multimedia-language-services/ Accessed: 2025-03-08.  
+[^10]: Global App Testing. https://www.globalapptesting.com Accessed: 2025-03-08.  
