@@ -6,7 +6,7 @@ code as it is meant to help you understand some of the concepts.
 ## Technical Questions
 
 **1. What is the difference between == and .equals in java? Provide a code example of each, where they would return different results for an object. Include the code snippet using the hash marks (```) to create a code block.**  
-   `==` compares references (memory addresses) of two objects while`.equals()`compares values inside two objects.
+   `==` compares references (memory addresses) of two objects while`.equals()`compares the content equality of two strings.[^1]
    ```java
     String str1 = new String("Hello");
     String str2 = new String("Hello");
@@ -14,10 +14,10 @@ code as it is meant to help you understand some of the concepts.
     str1.equals(str2);
    ```
 **2. Logical sorting can be difficult when talking about case. For example, should "apple" come before "Banana" or after? How would you sort a list of strings in a case-insensitive manner?**  
-`Comparator` interface and `String.CASE_INSENSITIVE_ORDER` can be used. For example,
+`sort` method from `Collections` can be used.[^2] For example,
 ```java
 List<String> fruits = Arrays.asList("apple", "Banana", "Orange", "grape");
-fruits.sort(String.CASE_INSENSITIVE_ORDER); 
+Collections.sort(fruits, String.CASE_INSENSITIVE_ORDER);
 ```
 **3. In our version of the solution, we had the following code (snippet)**  
  ```java
@@ -38,16 +38,17 @@ For example, as `>=` also contains `>`, if`>` goes first,`>=` would be recognize
 
 **4. What is the difference between a List and a Set in Java? When would you use one over the other?**  
 List is ordered, indexed and allows duplicates. So when order, index and duplicate elements are necessary or important, list should be used.  
-Set is unordered without duplicates and index. So when duplicate is not allowed and order and index does not matter, set can be used.
+Set is unordered without duplicates and index. So when duplicate is not allowed and order and index does not matter, set can be used.[^3]
 
 **5. In [GamesLoader.java](src/main/java/student/GamesLoader.java), we use a Map to help figure out the columns. What is a map? Why would we use a Map here?**   
-A `Map` in Java is a collection that stores key-value pairs, where each key is unique, and it maps to a specific value. Using a `Map` can be helpful in scenarios where we need to associate a column identifier (the key) with a specific column of data (the value).
+A `Map` in Java is a collection that stores key-value pairs, where each key is unique, and it maps to a specific value. Using a `Map` can be helpful in scenarios where we need to associate a column identifier (the key) with a specific column of data (the value).[^4]
+
 
 
 
 **6. [GameData.java](src/main/java/student/GameData.java) is actually an `enum` with special properties we added to help with column name mappings. What is an `enum` in Java? Why would we use it for this application?**  
 Enum is a data type consisting a predefined set of named values.  
-In this application, using enum can eliminate the risk of typos or inconsistencies when referring to column names throughout the application. Some enum constants are associated with additional properties and methods, keeping related logic and data together and makes the code more maintainable
+In this application, using enum can eliminate the risk of typos or inconsistencies when referring to column names throughout the application. Some enum constants are associated with additional properties and methods, keeping related logic and data together and makes the code more maintainable.[^5]
 
 **7. Rewrite the following as an if else statement inside the empty code block.**   
     ```java
@@ -96,3 +97,10 @@ various spoken languages around the world? What about areas with internet access
 
 
 As a reminder, deeper thinking questions are meant to require some research and to be answered in a paragraph for with references. The goal is to open up some of the discussion topics in CS, so you are better informed going into industry. 
+
+## References
+[^1]: Difference Between == Operator and equals() Method in Java. https://www.geeksforgeeks.org/difference-between-and-equals-method-in-java/ Accessed: 2025-03-08.  
+[^2]: Java Program to sort a List in case insensitive order. https://www.tutorialspoint.com/java-program-to-sort-a-list-in-case-insensitive-order Accessed: 2025-03-08.
+[^3]: Difference Between List and Set in Java. https://www.geeksforgeeks.org/difference-between-list-and-set-in-java/ Accessed: 2025-03-08.
+[^4]: Map Interface in Java. https://www.geeksforgeeks.org/map-interface-java-examples/ Accessed: 2025-03-08.
+[^5]: Enum Types. https://docs.oracle.com/javase/tutorial/java/javaOO/enum.html Accessed: 2025-03-08.

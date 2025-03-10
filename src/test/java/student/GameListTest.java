@@ -45,17 +45,21 @@ class GameListTest {
     void count() {
         GameList gameList = new GameList();
         gameList.addToList("1", games.stream());
-
         assertTrue(gameList.getGameNames().size() == 1);
     }
 
     @Test
     void saveGame() {
+        GameList gameList = new GameList();
+        gameList.addToList("1-8", games.stream());
+        gameList.saveGame("test.txt");
+        gameList.saveGame("test.txt");
     }
 
     @Test
     void addToList() {
         GameList gameList = new GameList();
+        assertThrows(IllegalArgumentException.class, () -> {gameList.addToList("", games.stream());});
         gameList.addToList("1-3", games.stream());
         List<String> expected = List.of("Go", "Go Fish", "golang");
         assertEquals(expected, gameList.getGameNames());

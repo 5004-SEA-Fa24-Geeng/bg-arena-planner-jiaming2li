@@ -48,15 +48,13 @@ public class Planner implements IPlanner { //classPlanner
 
             for (String condition : conditions) { //miniplayers>4, name = quintus
                 condition = condition.trim();
-
-
                 Operations op = Operations.getOperatorFromStr(condition);
                 String[] parts = condition.split("[=><!~]+");
                 GameData gd = GameData.fromString(parts[0].trim());
 
                 String right = parts[1].trim().toLowerCase();
 
-                stream = stream.filter(game -> Filters.filter(game, gd, op, right)); //ignore?
+                stream = stream.filter(game -> Filters.filter(game, gd, op, right));
             }
         }
 
