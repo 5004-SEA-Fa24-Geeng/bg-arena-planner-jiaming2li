@@ -39,7 +39,7 @@ public class Planner implements IPlanner { //classPlanner
 
 
     @Override
-    public Stream<BoardGame> filter(String filter, GameData sortOn, boolean ascending){
+    public Stream<BoardGame> filter(String filter, GameData sortOn, boolean ascending) {
         // TODO Auto-generated method stub
 
         Stream<BoardGame> stream = games.stream();
@@ -47,32 +47,17 @@ public class Planner implements IPlanner { //classPlanner
         if (!filter.isEmpty()) {
             String[] conditions = filter.split(",");
 
-            //try{
-            //    for (String condition : conditions) {
-            //        condition = condition.trim();
-            //        Operations op = Operations.getOperatorFromStr(condition);
-            //        String[] parts = condition.split("[=><!~]+");
-            //        if (parts.length != 2 || op==null) {
-            //            throw new IllegalArgumentException("Invalid condition");
-            //        }
-            //        try{GameData gd = GameData.fromString(parts[0].trim());}
-            //        catch(IllegalArgumentException e){
-            //            throw new IllegalArgumentException("Invalid game");
-            //        }
-            //    }
-            //} catch (IllegalArgumentException e) {
-            //    System.err.println("Invalid filter, please input again.");
-            //    return stream = Stream.empty();
-            //}
             for (String condition : conditions) {
                         condition = condition.trim();
                         Operations op = Operations.getOperatorFromStr(condition);
                         String[] parts = condition.split("[=><!~]+");
-                        if (parts.length != 2 || op==null) {
+                        if (parts.length != 2 || op == null) {
                             throw new IllegalArgumentException("Invalid condition");
                         }
-                        try{GameData gd = GameData.fromString(parts[0].trim());}
-                        catch(IllegalArgumentException e){
+                        try {
+                            GameData gd = GameData.fromString(parts[0].trim());
+                        }
+                        catch (IllegalArgumentException e) {
                             throw new IllegalArgumentException("Invalid game data");
                         }
             }

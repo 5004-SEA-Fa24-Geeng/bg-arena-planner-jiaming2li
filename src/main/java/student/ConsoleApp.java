@@ -156,7 +156,7 @@ public class ConsoleApp {
                         return; // leave early.
                     }
                 }
-                try{
+                try {
                     result = planner.filter(parts[0], sortON, ascending);
                 } catch (IllegalArgumentException e) {
                     printOutput("%s%n", ConsoleText.INVALID);
@@ -166,7 +166,7 @@ public class ConsoleApp {
 
                   // NOTICE: sortON and ascending are used here.
             } else {
-                try{
+                try {
                     result = planner.filter(filter);
                 } catch (IllegalArgumentException e) {
                     printOutput("%s%n", ConsoleText.INVALID);
