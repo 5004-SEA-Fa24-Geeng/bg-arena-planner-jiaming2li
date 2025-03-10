@@ -117,7 +117,7 @@ public final class Filters {
      * @param column column The {@code GameData} column to check
      * @param value value  The string value to validate
      */
-    public static void filterExam(GameData column,String value) {
+    public static void filterExam(GameData column, String value) {
         if (!column.equals(GameData.NAME)) {
             try {
                 double doubleValue = Double.parseDouble(value);
