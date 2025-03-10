@@ -63,7 +63,6 @@ public class Planner implements IPlanner { //classPlanner
                         }
             }
         }
-        System.out.println("中文");
 
         return stream.sorted(Comparators.comparator(sortOn, ascending));
     }
