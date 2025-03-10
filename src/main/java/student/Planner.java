@@ -56,22 +56,25 @@ public class Planner implements IPlanner { //classPlanner
                         }
                         try {
                             GameData gd = GameData.fromString(parts[0].trim());
+                            String right = parts[1].trim().toLowerCase();
+                            stream = stream.filter(game -> Filters.filter(game, gd, op, right));
                         }
                         catch (IllegalArgumentException e) {
                             throw new IllegalArgumentException("Invalid game data");
                         }
+
             }
 
-            for (String condition : conditions) { //miniplayers>4, name = quintus
-                condition = condition.trim();
-                Operations op = Operations.getOperatorFromStr(condition);
-                String[] parts = condition.split("[=><!~]+");
-                GameData gd = GameData.fromString(parts[0].trim());
+            //for (String condition : conditions) { //miniplayers>4, name = quintus
+            //    condition = condition.trim();
+            //    Operations op = Operations.getOperatorFromStr(condition);
+            //    String[] parts = condition.split("[=><!~]+");
+            //    GameData gd = GameData.fromString(parts[0].trim());
 
-                String right = parts[1].trim().toLowerCase();
+            //    String right = parts[1].trim().toLowerCase();
 
-                stream = stream.filter(game -> Filters.filter(game, gd, op, right));
-            }
+            //    stream = stream.filter(game -> Filters.filter(game, gd, op, right));
+            //}
         }
 
         return stream.sorted(Comparators.comparator(sortOn, ascending));

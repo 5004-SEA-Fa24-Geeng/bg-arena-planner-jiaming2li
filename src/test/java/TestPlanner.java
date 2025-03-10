@@ -45,7 +45,7 @@ public class TestPlanner {
     @Test
     public void testFilterByNameContains() {
         IPlanner planner = new Planner(games);
-        assertTrue(planner.filter("name ~=").toList().isEmpty());
+        assertThrows(IllegalArgumentException.class, () -> planner.filter("name ~="));
         List<String> filtered = planner.filter("name ~= Go").map(BoardGame::getName).toList();
         List<String> expectedList = List.of("Go", "Go Fish", "golang", "GoRami");
         assertEquals(expectedList, filtered);
