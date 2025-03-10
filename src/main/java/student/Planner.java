@@ -37,14 +37,45 @@ public class Planner implements IPlanner { //classPlanner
         return filter(filter, sortOn, true);
     }
 
+
     @Override
-    public Stream<BoardGame> filter(String filter, GameData sortOn, boolean ascending) {
+    public Stream<BoardGame> filter(String filter, GameData sortOn, boolean ascending){
         // TODO Auto-generated method stub
 
         Stream<BoardGame> stream = games.stream();
 
         if (!filter.isEmpty()) {
             String[] conditions = filter.split(",");
+
+            //try{
+            //    for (String condition : conditions) {
+            //        condition = condition.trim();
+            //        Operations op = Operations.getOperatorFromStr(condition);
+            //        String[] parts = condition.split("[=><!~]+");
+            //        if (parts.length != 2 || op==null) {
+            //            throw new IllegalArgumentException("Invalid condition");
+            //        }
+            //        try{GameData gd = GameData.fromString(parts[0].trim());}
+            //        catch(IllegalArgumentException e){
+            //            throw new IllegalArgumentException("Invalid game");
+            //        }
+            //    }
+            //} catch (IllegalArgumentException e) {
+            //    System.err.println("Invalid filter, please input again.");
+            //    return stream = Stream.empty();
+            //}
+            for (String condition : conditions) {
+                        condition = condition.trim();
+                        Operations op = Operations.getOperatorFromStr(condition);
+                        String[] parts = condition.split("[=><!~]+");
+                        if (parts.length != 2 || op==null) {
+                            throw new IllegalArgumentException("Invalid condition");
+                        }
+                        try{GameData gd = GameData.fromString(parts[0].trim());}
+                        catch(IllegalArgumentException e){
+                            throw new IllegalArgumentException("Invalid game data");
+                        }
+            }
 
             for (String condition : conditions) { //miniplayers>4, name = quintus
                 condition = condition.trim();
@@ -57,7 +88,6 @@ public class Planner implements IPlanner { //classPlanner
                 stream = stream.filter(game -> Filters.filter(game, gd, op, right));
             }
         }
-
 
         return stream.sorted(Comparators.comparator(sortOn, ascending));
     }

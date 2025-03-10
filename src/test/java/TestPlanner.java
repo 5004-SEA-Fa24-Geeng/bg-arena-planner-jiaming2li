@@ -1,13 +1,15 @@
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import student.BoardGame;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import student.Planner;
 import student.IPlanner;
 import student.GameData;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 
 /**
@@ -43,6 +45,7 @@ public class TestPlanner {
     @Test
     public void testFilterByNameContains() {
         IPlanner planner = new Planner(games);
+        assertTrue(planner.filter("name ~=").toList().isEmpty());
         List<String> filtered = planner.filter("name ~= Go").map(BoardGame::getName).toList();
         List<String> expectedList = List.of("Go", "Go Fish", "golang", "GoRami");
         assertEquals(expectedList, filtered);
@@ -100,6 +103,7 @@ public class TestPlanner {
     @Test
     public void testMinPlayersLessThan() {
         IPlanner planner = new Planner(games);
+        assertThrows(IllegalArgumentException.class, () -> planner.filter("minplayers < 8, invalidCondition"));
         List<BoardGame> filtered = planner.filter("minplayers < 2").toList();
         assertEquals(1, filtered.size());
         assertEquals("17 days", filtered.get(0).getName());
@@ -124,6 +128,7 @@ public class TestPlanner {
     @Test
     public void testMinPlayersNotEqual() {
         IPlanner planner = new Planner(games);
+        assertThrows(IllegalArgumentException.class, () -> planner.filter("minplayers < 8,,name~=4 "));
         List<String> filtered = planner.filter("minplayers != 2").map(BoardGame::getName).toList();
         List<String> expectedList = List.of("17 days", "GoRami", "Monopoly", "Tucano");
         assertEquals(expectedList, filtered);
@@ -177,6 +182,7 @@ public class TestPlanner {
     @Test
     public void testDifficulty() {
         IPlanner planner = new Planner(games);
+        assertThrows(IllegalArgumentException.class, () -> planner.filter("difficulty = 1"));
         List<BoardGame> filtered = planner.filter("difficulty == 1").toList();
         assertEquals(1, filtered.size());
         assertEquals("Monopoly", filtered.get(0).getName());
@@ -220,6 +226,7 @@ public class TestPlanner {
     @Test
     public void testChainedFilters() {
         IPlanner planner = new Planner(games);
+        assertThrows(IllegalArgumentException.class, () -> planner.filter("minplayers < 8, nem~=5, Invalid Condition"));
         List<BoardGame> filtered = planner.filter("yearpublished > 2004, rank>=700, difficulty<2").toList();
         assertEquals(1, filtered.size());
         assertEquals("Monopoly", filtered.get(0).getName());

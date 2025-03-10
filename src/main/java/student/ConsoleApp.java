@@ -156,9 +156,22 @@ public class ConsoleApp {
                         return; // leave early.
                     }
                 }
+                try{
+                    result = planner.filter(parts[0], sortON, ascending);
+                } catch (IllegalArgumentException e) {
+                    printOutput("%s%n", ConsoleText.INVALID);
+                    return;
+                }
+                result = planner.filter(parts[0], sortON, ascending);
 
-                result = planner.filter(parts[0], sortON, ascending);  // NOTICE: sortON and ascending are used here.
+                  // NOTICE: sortON and ascending are used here.
             } else {
+                try{
+                    result = planner.filter(filter);
+                } catch (IllegalArgumentException e) {
+                    printOutput("%s%n", ConsoleText.INVALID);
+                    return;
+                }
                 result = planner.filter(filter); // default sort
             }
         } else {
