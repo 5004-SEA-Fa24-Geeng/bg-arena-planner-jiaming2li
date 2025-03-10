@@ -64,7 +64,6 @@ public class Planner implements IPlanner { //classPlanner
         return stream.sorted(Comparators.comparator(sortOn, ascending));
     }
 
-
     @Override
     public void reset() {
         // TODO Auto-generated method stub

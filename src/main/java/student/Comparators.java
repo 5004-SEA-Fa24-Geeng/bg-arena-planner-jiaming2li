@@ -33,6 +33,24 @@ import java.util.Comparator;
             case MAX_PLAYERS:
                 comparator = Comparator.comparingInt(BoardGame::getMaxPlayers);
                 break;
+            case RATING:
+                comparator = Comparator.comparingDouble(BoardGame::getRating);
+                break;
+            case RANK:
+                comparator = Comparator.comparingInt(BoardGame::getRank);
+                break;
+            case YEAR:
+                comparator = Comparator.comparingInt(BoardGame::getYearPublished);
+                break;
+            case DIFFICULTY:
+                comparator = Comparator.comparingDouble(BoardGame::getDifficulty);
+                break;
+            case MAX_TIME:
+                comparator = Comparator.comparingInt(BoardGame::getMaxPlayTime);
+                break;
+            case MIN_TIME:
+                comparator = Comparator.comparingInt(BoardGame::getMinPlayTime);
+                break;
             default:
                 throw new IllegalArgumentException("Invalid sorting field: " + sortOn);
         }

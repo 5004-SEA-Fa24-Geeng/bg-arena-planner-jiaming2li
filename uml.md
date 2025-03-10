@@ -4,7 +4,7 @@ classDiagram
 class BGArenaPlanner {
 - static final DEFAULT_COLLECTION: String 
 - BGArenaPlanner()
-+ static main(args: String[] ) void 
++ static main(String[] ) void 
 }
        
 class BoardGame {
@@ -29,11 +29,11 @@ class BoardGame {
 + getRank()int
 + getRating()double
 + getYearPublished()int
-+ toStringWithInfo(col: GameData)String
++ toStringWithInfo(GameData)String
 + toString()String
 + equals(Object)boolean
 + hashCode()int
-+ static main(args: String[] ) void 
++ static main(String[] ) void 
 }
 
 class ConsoleApp {
@@ -43,6 +43,8 @@ class ConsoleApp {
   - current: Scanner 
   - gameList: IGameList 
   - planner: IPlanner 
+  - filtered: List<BoardGame> 
+  
   + ConsoleApp(IGameList, IPlanner)
   + start()void 
   - randomNumber()void 
@@ -53,8 +55,8 @@ class ConsoleApp {
   - printCurrentList()void 
   - nextCommand()ConsoleText 
   - remainder()String 
-  - static getInput(String, Object)String 
-  - static printOutput(String, Object)void 
+  - static getInput(String, Object[])String 
+  - static printOutput(String, Object[])void 
 }
 
 class ConsoleText {
@@ -86,6 +88,7 @@ class ConsoleText {
         CMD_SORT_OPTION
         CMD_SORT_OPTION_DIRECTION_ASC
         CMD_SORT_OPTION_DIRECTION_DESC
+        - static CTEXT: Properties ??????
         + toString()String 
         + static fromString(String)ConsoleText 
     }
@@ -111,6 +114,8 @@ class GameData {
 }
 
 class GameList {
+        - gameNames:List<String>
+        
         + GameList()
         + getGameNames()List<String> 
         + clear()void 
@@ -122,6 +127,7 @@ class GameList {
     
 class GamesLoader {
     - static final DELIMITER: String 
+    
     - private GamesLoader()
     + static loadGamesFile(String)Set<BoardGame> 
     - static toBoardGame(String, Map<GameData, Integer>)BoardGame 
@@ -149,7 +155,8 @@ class IPlanner {
 
 class Operations {
     <<enumeration>>
-    + operator:String 
+    - final operator:String 
+    
     + Operations(String)
     + getOperator()String 
     + static fromOperator(String)Operations 
@@ -165,6 +172,8 @@ class Operations {
        
 class Planner {
     - games Set~BoardGame~ 
+    - copy Set~BoardGame~ 
+    
     + Planner(Set~BoardGame~)
     + filter(String)Stream<BoardGame> 
     + filter(String, GameData)Stream<BoardGame> 
@@ -172,23 +181,65 @@ class Planner {
     + void reset()
 }
 
-    BGArenaPlanner .. IPlanner
-    BGArenaPlanner .. IGameList
-    BGArenaPlanner o-- ConsoleApp
-    GameList o-- BoardGame
-    IGameList o-- BoardGame
-    IPlanner o-- BoardGame
-    IPlanner --> GameData: uses
-    GamesLoader --> GameData: uses
-    GamesLoader o-- BoardGame
-    Planner o-- BoardGame
-    Planner --> GameData: uses
-    IPlanner <|.. Planner
-    IGameList <|.. GameList
+class Filters {
+        <<utility>>
+        - Filters()
+        + static filter(BoardGame, GameData, Operations, String)boolean 
+        + static filterString(String, Operations, String)boolean 
+        + static filterNum(double, Operations, String)boolean 
+}
+
+class Comparators {
+        <<utility>>
+        - Comparators()
+        + static comparator(GameData, boolean)Comparator<BoardGame> 
+}
 
 
-    ConsoleApp --> IGameList
-    ConsoleApp --> IPlanner
-    ConsoleApp --> ConsoleText: uses
-    ConsoleApp o-- BoardGame
-    ConsoleApp --> GameData: uses
+
+    BoardGame --> GameData
+    GameList ..|> IGameList
+    Planner ..|> IPlanner
+    
+    ConsoleApp *-- ConsoleText
+    ConsoleApp o-- IGameList
+    ConsoleApp o-- IPlanner
+    ConsoleApp o-- "*" BoardGame
+    
+    Planner *-- "*" BoardGame
+    
+    BGArenaPlanner ..> ConsoleApp : creates
+    BGArenaPlanner ..> GameList : creates
+    BGArenaPlanner ..> Planner : creates
+    BGArenaPlanner ..> GamesLoader : uses
+    
+    Filters --> BoardGame : filters
+    Filters --> GameData : uses
+    Filters --> Operations : uses
+    
+    Comparators --> BoardGame : compares
+    Comparators --> GameData : uses
+    
+    GamesLoader --> BoardGame : creates
+    GamesLoader --> GameData : uses
+    
+    IGameList ..> BoardGame : manages
+    IPlanner ..> BoardGame : processes
+    
+    ConsoleApp ..> GameData : uses for sorting
+    Planner ..> Filters : uses for filtering
+    Planner ..> Comparators : uses for sorting
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+  
