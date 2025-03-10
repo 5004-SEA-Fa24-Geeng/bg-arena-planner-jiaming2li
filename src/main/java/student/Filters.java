@@ -92,7 +92,7 @@ public final class Filters {
      */
     public static boolean filterNum(double gameData, Operations op, String value) {
         double doubleValue = Double.parseDouble(value);
-        
+
         switch (op) {
             case GREATER_THAN:
                 return gameData > doubleValue;
@@ -109,6 +109,23 @@ public final class Filters {
             default:
                 return false;
         }
+    }
+
+    /**
+     * Validates the given value based on the specified GameData column.
+     *
+     * @param column column The {@code GameData} column to check
+     * @param value value  The string value to validate
+     */
+    public static void filterExam(GameData column,String value) {
+        if (!column.equals(GameData.NAME)) {
+            try {
+                double doubleValue = Double.parseDouble(value);
+            } catch (NumberFormatException e) {
+                throw new IllegalArgumentException("Invalid value");
+            }
+        }
+
     }
 
 

@@ -120,6 +120,7 @@ public class TestPlanner {
     @Test
     public void testMinPlayersLessThanOrEqual() {
         IPlanner planner = new Planner(games);
+        assertThrows(IllegalArgumentException.class, () -> planner.filter("minplayers <= k"));
         List<BoardGame> filtered = planner.filter("minplayers <= 1").toList();
         assertEquals(1, filtered.size());
         assertEquals("17 days", filtered.get(0).getName());
@@ -166,6 +167,7 @@ public class TestPlanner {
     @Test
     public void testMinPlayTimeLessThanOrEqual() {
         IPlanner planner = new Planner(games);
+        assertThrows(IllegalArgumentException.class, () -> planner.filter("name~=7, minplaytime < x  "));
         List<BoardGame> filtered = planner.filter("minplaytime <= 10").toList();
         assertEquals(1, filtered.size());
         assertEquals("Chess", filtered.get(0).getName());
@@ -243,11 +245,11 @@ public class TestPlanner {
     @Test
     public void testFilterSortNameDesc() {
         IPlanner planner = new Planner(games);
-        List<BoardGame> filtered = planner.filter("minplayers >= 6",GameData.NAME,false).toList();
+        List<BoardGame> filtered = planner.filter("minplayers >= 2, rating>=5, difficulty<6",GameData.NAME,false).toList();
         assertEquals(3, filtered.size());
-        assertEquals("Tucano", filtered.get(0).getName());
-        assertEquals("Monopoly", filtered.get(1).getName());
-        assertEquals("GoRami", filtered.get(2).getName());
+        assertEquals("Monopoly", filtered.get(0).getName());
+        assertEquals("GoRami", filtered.get(1).getName());
+        assertEquals("Go Fish", filtered.get(2).getName());
     }
 
     @Test

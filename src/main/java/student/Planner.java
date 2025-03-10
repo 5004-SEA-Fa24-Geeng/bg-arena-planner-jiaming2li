@@ -57,9 +57,10 @@ public class Planner implements IPlanner { //classPlanner
                         try {
                             GameData gd = GameData.fromString(parts[0].trim());
                             String right = parts[1].trim().toLowerCase();
+                            Filters.filterExam(gd, right);
                             stream = stream.filter(game -> Filters.filter(game, gd, op, right));
                         } catch (IllegalArgumentException e) {
-                            throw new IllegalArgumentException("Invalid game data");
+                            throw new IllegalArgumentException("Invalid input");
                         }
             }
         }

@@ -648,6 +648,7 @@ class Filters {
         + static filter(BoardGame, GameData, Operations, String)boolean 
         + static filterString(String, Operations, String)boolean 
         + static filterNum(double, Operations, String)boolean 
+        + static void filterExam(GameData, String) void
 }
 
 class Comparators {
