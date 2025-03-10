@@ -92,7 +92,7 @@ public final class Filters {
      */
     public static boolean filterNum(double gameData, Operations op, String value) {
         double doubleValue = Double.parseDouble(value);
-
+        
         switch (op) {
             case GREATER_THAN:
                 return gameData > doubleValue;

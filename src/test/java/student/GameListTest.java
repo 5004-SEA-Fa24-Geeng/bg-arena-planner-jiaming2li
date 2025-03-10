@@ -53,24 +53,35 @@ class GameListTest {
         GameList gameList = new GameList();
         gameList.addToList("1-8", games.stream());
         gameList.saveGame("test.txt");
-        gameList.saveGame("test.txt");
     }
 
     @Test
     void addToList() {
         GameList gameList = new GameList();
         assertThrows(IllegalArgumentException.class, () -> {gameList.addToList("", games.stream());});
-        gameList.addToList("1-3", games.stream());
-        List<String> expected = List.of("Go", "Go Fish", "golang");
+        gameList.addToList("1-2", games.stream());
+        gameList.addToList("3", games.stream());
+        gameList.addToList("GoRami", games.stream());
+        List<String> expected = List.of("Go", "Go Fish", "golang","GoRami");
+        assertEquals(expected, gameList.getGameNames());
+        gameList.removeFromList("all");
+        gameList.addToList("all", games.stream());
+        expected = List.of("Go", "Go Fish", "golang","GoRami");
         assertEquals(expected, gameList.getGameNames());
     }
 
     @Test
     void removeFromList() {
         GameList gameList = new GameList();
-        gameList.addToList("1-3", games.stream());
-        gameList.removeFromList("1-2");
-        List<String> expected = List.of("golang");
+        gameList.addToList("1-4", games.stream());
+        gameList.removeFromList("4-8");
+        List<String> expected = List.of("Go", "Go Fish", "golang");
         assertEquals(expected, gameList.getGameNames());
+        gameList.removeFromList("go");
+        gameList.removeFromList("1");
+        expected = List.of("golang");
+        assertEquals(expected, gameList.getGameNames());
+        gameList.removeFromList("all");
+        assertTrue(gameList.getGameNames().isEmpty());
     }
 }
