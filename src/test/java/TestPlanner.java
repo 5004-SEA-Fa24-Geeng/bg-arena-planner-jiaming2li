@@ -40,13 +40,15 @@ public class TestPlanner {
         List<BoardGame> filtered = planner.filter("name == Go").toList();
         assertEquals(1, filtered.size());
         assertEquals("Go", filtered.get(0).getName());
+        filtered = planner.filter("name == to").toList();
+        assertTrue(filtered.isEmpty());
     }
 
     @Test
     public void testFilterByNameContains() {
         IPlanner planner = new Planner(games);
         assertThrows(IllegalArgumentException.class, () -> planner.filter("name ~="));
-        List<String> filtered = planner.filter("name ~= Go").map(BoardGame::getName).toList();
+        List<String> filtered = planner.filter("name ~= go").map(BoardGame::getName).toList();
         List<String> expectedList = List.of("Go", "Go Fish", "golang", "GoRami");
         assertEquals(expectedList, filtered);
     }
@@ -78,8 +80,8 @@ public class TestPlanner {
     @Test
     public void testNameLessThanOrEqual() {
         IPlanner planner = new Planner(games);
-        List<String> filtered = planner.filter("name <= Chess").map(BoardGame::getName).toList();
-        List<String> expectedList = List.of("17 days", "Chess");
+        List<String> filtered = planner.filter("name <= Ch@ess").map(BoardGame::getName).toList();
+        List<String> expectedList = List.of("17 days");
         assertEquals(expectedList, filtered);
     }
 
@@ -115,6 +117,9 @@ public class TestPlanner {
         List<String> filtered = planner.filter("minplayers >= 6").map(BoardGame::getName).toList();
         List<String> expectedList = List.of("GoRami", "Monopoly","Tucano");
         assertEquals(expectedList, filtered);
+        filtered = planner.filter("minplayers >= -1").map(BoardGame::getName).toList();
+        expectedList = List.of("17 days", "Chess", "Go", "Go Fish", "golang", "GoRami", "Monopoly", "Tucano");
+        assertEquals(expectedList, filtered);
     }
 
     @Test
@@ -124,6 +129,8 @@ public class TestPlanner {
         List<BoardGame> filtered = planner.filter("minplayers <= 1").toList();
         assertEquals(1, filtered.size());
         assertEquals("17 days", filtered.get(0).getName());
+        filtered = planner.filter("minplayers <= -1").toList();
+        assertTrue(filtered.isEmpty());
     }
 
     @Test
